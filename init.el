@@ -23,11 +23,13 @@
        (company           ; the ultimate code completion backend
         +auto
         +childframe)
-       ;;(helm
-       ;; +fuzzy
-       ;; +childframe)             ; the *other* search engine for love and life
+       (helm
+        +fuzzy
+        +prescient
+        +icons
+        +childframe)             ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
-       (ivy +fuzzy +prescient +childframe +icons)               ; a search engine for love and life
+       ;;(ivy +fuzzy +prescient +childframe +icons)               ; a search engine for love and life
 
        :ui
        ;;deft              ; notational velocity for Emacs
@@ -145,7 +147,10 @@
        ;;javascript        ; all(hope(abandon(ye(who(enter(here))))))
        julia             ; a better, faster MATLAB
        ;;kotlin            ; a better, slicker Java(Script)
-       latex             ; writing papers in Emacs has never been so fun
+       (latex             ; writing papers in Emacs has never been so fun
+        +ltexmk
+        +cdlatex
+        +fold)
        ;;lean
        ;;factor
        ;;ledger            ; an accounting system in Emacs
@@ -160,12 +165,12 @@
         +dragndrop                  ; drag & drop files/images into org buffers
         ;;+hugo                     ; use Emacs for hugo blogging
         +noter                      ; enhanced PDF notetaking
-        ;;+jupyter                    ; ipython/jupyter support for babel
+        +jupyter                    ; ipython/jupyter support for babel
         +pandoc                     ; export-with-pandoc support
         +gnuplot                    ; who doesn't like pretty pictures
         ;;+pomodoro                 ; be fruitful with the tomato technique
         +present                    ; using org-mode for presentations
-        ;;+roam
+        +roam2
         )                      ; wander around notes
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more

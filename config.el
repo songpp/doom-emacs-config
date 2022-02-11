@@ -20,8 +20,8 @@
 ;;
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
- (setq doom-font (font-spec :family "PT Mono" :size 13 :weight 'semi-light)
-       doom-variable-pitch-font (font-spec :family "Consolas for Powerline" :size 13))
+ (setq doom-font (font-spec :family "PT Mono" :size 13)
+       doom-variable-pitch-font (font-spec :family "Consolas" :size 13))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -38,7 +38,7 @@
 (setq undo-limit 80000000)
 
 (display-time-mode 1)
-;;(global-subword-mode 1)
+(global-subword-mode 1)
 
 (setq-default
  delete-by-moving-to-trash t                      ; Delete files to trash
@@ -58,6 +58,15 @@
 
 (setq which-key-idle-delay 0.3)
 (setq iedit-toggle-key-default nil)
+(setq org-use-sub-superscripts '{})
+
+;; (setq org-emphasis-alist
+;;   '(("*" (bold :foreground "Orange" ))
+;;     ("/" italic)
+;;     ("_" underline)
+;;     ("=" (:background "maroon" :foreground "white"))
+;;     ("~" (:background "deep sky blue" :foreground "MidnightBlue"))
+;;     ("@" (:strike-through t))))
 
 ;;(setq lsp-rust-server 'rust-analyzer)
 (use-package! lsp-mode
@@ -70,7 +79,7 @@
   (lsp-mode . lsp-ui-mode)
   (lsp-mode . lsp-lens-mode)
   (lsp-ui-mode . lsp-ui-doc-mode)
-  ;;  (lsp-idle-delay 0.6)
+  ;; (lsp-idle-delay 0.6)
   (lsp-rust-analyzer-server-display-inlay-hints t)
   (lsp-eldoc-render-all t)
   ;;  (lsp-rust-analyzer-cargo-watch-command "clippy")
@@ -148,3 +157,39 @@
 
 (when (daemonp)
   (exec-path-from-shell-initialize))
+
+
+(use-package! org-transclusion
+  :after org
+  :custom
+  (setq org-use-sub-superscripts '{})
+  :init
+  (map!
+   :map global-map "<f12>" #'org-transclusion-add
+   :leader
+   :prefix "n"
+   :desc "Org Transclusion Mode" "t" #'org-transclusion-mode))
+
+
+(use-package! org-pretty-table
+  :commands (org-pretty-table-mode global-org-pretty-table-mode))
+
+
+(use-package! ob-http
+  :commands org-babel-execute:http)
+
+;;(use-package! vlf-setup
+;;  :defer-incrementally vlf-tune vlf-base vlf-write vlf-search vlf-occur vlf-follow vlf-ediff vlf)
+
+(setq +zen-text-scale 0.8)
+(setq emojify-emoji-set "twemoji-v2")
+
+(use-package! page-break-lines
+  :commands page-break-lines-mode
+  :init
+  (autoload 'turn-on-page-break-lines-mode "page-break-lines")
+  :config
+  (setq page-break-lines-max-width fill-column)
+  (map! :prefix "g"
+        :desc "Prev page break" :nv "[" #'backward-page
+        :desc "Next page break" :nv "]" #'forward-page))

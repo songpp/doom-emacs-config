@@ -12,6 +12,7 @@
 (package! imenu-list)
 ;;(package! helm-tramp)
 
+(package! rotate)
 (package! aggressive-indent)
 (package! realgud-lldb)
 (package! outshine)
@@ -28,7 +29,15 @@
 (package! monokai-pro-theme)
 ;;(package! graphviz-dot-mode)
 
+(package! page-break-lines :recipe (:host github :repo "purcell/page-break-lines"))
+(package! vlf :recipe (:host github :repo "m00natic/vlfi" :files ("*.el"))
+  :pin "cc02f2533782d6b9b628cec7e2dcf25b2d05a27c" :disable t)
 (package! exec-path-from-shell)
+(package! org-transclusion)
+(package! org-ref)
+(package! ob-http)
+(package! org-graph-view :recipe (:host github :repo "alphapapa/org-graph-view"))
+(package! nov)
 
 
 ;; To install a package directly from a remote git repo, you must specify a

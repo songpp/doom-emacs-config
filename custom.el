@@ -43,7 +43,12 @@
     (cons 320 "#886d6f")
     (cons 340 "#4C4A4D")
     (cons 360 "#4C4A4D")))
- '(vc-annotate-very-old-color nil))
+ '(vc-annotate-very-old-color nil)
+ '(warning-suppress-types
+   '((lsp-lens-mode-hook)
+     (lsp-mode-hook)
+     (rustic-mode-local-vars-hook)
+     (hack-local-variables-hook))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
