@@ -193,3 +193,7 @@
   (map! :prefix "g"
         :desc "Prev page break" :nv "[" #'backward-page
         :desc "Next page break" :nv "]" #'forward-page))
+
+;; brew install plantuml
+(setq org-plantuml-jar-path (expand-file-name "/usr/local/opt/plantuml/libexec/plantuml.jar"))
+(org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t)))
