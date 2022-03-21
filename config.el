@@ -20,8 +20,10 @@
 ;;
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
- (setq doom-font (font-spec :family "PT Mono" :size 13)
-       doom-variable-pitch-font (font-spec :family "Consolas" :size 13))
+ (setq doom-font (font-spec :family "PT Mono" :size 14)
+       doom-variable-pitch-font (font-spec :family "Consolas" :size 14))
+
+;; (setq line-spacing 0.14)
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -100,6 +102,13 @@
 (global-subword-mode 1)
 
 (add-hook! 'org-mode-hook #'+org-pretty-mode #'mixed-pitch-mode)
+(add-hook! 'org-mode-hook
+          (lambda ()
+            (kill-local-variable 'line-spacing)
+            (setq-local default-text-properties
+                        '(line-spacing 0.0
+                          line-height 1.1
+                          ))))
 
 ;; scala sbt and metals
 ;; (use-package! scala-mode
