@@ -1,4 +1,4 @@
-
+﻿
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
 ;; Place your private configuration here! Remember, you do not need to run 'doom
@@ -21,9 +21,7 @@
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
  (setq doom-font (font-spec :family "PT Mono" :size 14)
-       doom-variable-pitch-font (font-spec :family "Consolas" :size 14))
-
-;; (setq line-spacing 0.14)
+       doom-variable-pitch-font (font-spec :family "MonoLisa" :size 14))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -40,7 +38,12 @@
 (setq undo-limit 80000000)
 
 (display-time-mode 1)
-(global-subword-mode 1)
+;;(global-subword-mode 1)
+(setq org-export-coding-system 'utf-8)
+(prefer-coding-system 'utf-8)
+(set-charset-priority 'unicode)
+(setq default-process-coding-system '(utf-8-unix . utf-8-unix))
+;;(setq fringe-mode minimal)
 
 (setq-default
  delete-by-moving-to-trash t                      ; Delete files to trash
@@ -69,6 +72,10 @@
 ;;     ("=" (:background "maroon" :foreground "white"))
 ;;     ("~" (:background "deep sky blue" :foreground "MidnightBlue"))
 ;;     ("@" (:strike-through t))))
+
+;;(use-package! ox-zola
+;;  :after 'ox)
+
 
 ;;(setq lsp-rust-server 'rust-analyzer)
 (use-package! lsp-mode
@@ -128,6 +135,11 @@
   :hook (after-init . global-clipetty-mode)
   )
 
+(use-package! vlf
+  :config
+  (custom-set-variables
+   '(vlf-application 'dont-ask))
+  )
 
 ;;(global-clipetty-mode)
 (setq clipetty-assume-nested-mux nil)
@@ -154,12 +166,73 @@
 (use-package! imenu-list
   :commands imenu-list-smart-toggle)
 
+(use-package! org
+  :custom
+  (setq org-catch-invisible-edits 1)
+  )
+
+(use-package! org-download
+  :after org
+  :defer nil
+  :custom
+  (org-download-method 'directory)
+  (org-download-image-dir "images")
+  (org-download-heading-lvl nil)
+  (org-download-timestamp "%Y%m%d-%H%M%S_")
+  (org-image-actual-width 300)
+  (org-download-screenshot-method "/opt/homebrew/bin/pngpaste %s")
+  :bind
+  ("C-M-y" . org-download-screenshot)
+  :config
+  (require 'org-download))
+
+
+(use-package! org-transclusion
+  :after org
+  :init
+  (map!
+   :map global-map "<f12>" #'org-transclusion-add
+   :leader
+   :prefix "n"
+   :desc "Org Transclusion Mode" "t" #'org-transclusion-mode))
+
+(setq org-alphabetical-lists t)
+(require 'ox-html)
+(require 'ox-latex)
+(require 'ox-ascii)
+
+(use-package! org-special-block-extras
+  :hook (org-mode . org-special-block-extras-mode)
+  )
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; (use-package! lsp-grammarly                     ;;
+;;   :ensure t                                     ;;
+;;   :hook (text-mode . (lambda ()                 ;;
+;;                        (require 'lsp-grammarly) ;;
+;;                        (lsp)))                  ;;
+;;   )                                             ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (after! treemacs
   (set-popup-rule! "^ \\*Treemacs"
     :side 'left
     :size 0.30
     :quit nil
     :ttl 0))
+
+(setq org-plantuml-jar-path (expand-file-name "/opt/homebrew/opt/plantuml/libexec/plantuml.jar"))
+(add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
+(org-babel-do-load-languages 'org-babel-load-languages
+                             '(
+                               (plantuml . t)
+                               (dot . t)
+                               (org . t)
+                               (latex .t)
+                               ))
+
 
 ;;(use-package! rtags)
 ;;(cmake-ide-setup)

@@ -8,11 +8,13 @@
 
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
 ;(package! some-package)
-(package! protobuf-mode)
+;;(package! protobuf-mode)
 (package! imenu-list)
 ;;(package! helm-tramp)
 
 (package! rotate)
+(package! org-transclusion)
+
 (package! aggressive-indent)
 (package! realgud-lldb)
 (package! outshine)
@@ -39,6 +41,16 @@
 (package! org-graph-view :recipe (:host github :repo "alphapapa/org-graph-view"))
 (package! nov)
 (package! presentation)
+(package! vlf)
+(package! exec-path-from-shell)
+(package! zoom-frm)
+;;(package! lsp-grammarly)
+;;(package! dash)
+;;(package! org-attach-screenshot)
+(package! org-download)
+(package! org-special-block-extras)
+(package! ox-zola :recipe (:host github :repo "gicrisf/ox-zola"))
+
 
 ;; To install a package directly from a remote git repo, you must specify a
 ;; `:recipe'. You'll find documentation on what `:recipe' accepts here:
