@@ -14,7 +14,8 @@
 
 (package! rotate)
 (package! org-transclusion)
-
+(package! org-ml)
+(package! org-ql)
 (package! aggressive-indent)
 (package! realgud-lldb)
 (package! outshine)
@@ -30,18 +31,21 @@
 (package! cmake-ide)
 (package! monokai-pro-theme)
 ;;(package! graphviz-dot-mode)
-
+(package! graphviz-dot-mode)
+(package! git-timemachine)
+(package! golden-ratio)
 (package! page-break-lines :recipe (:host github :repo "purcell/page-break-lines"))
-(package! vlf :recipe (:host github :repo "m00natic/vlfi" :files ("*.el"))
-  :pin "cc02f2533782d6b9b628cec7e2dcf25b2d05a27c" :disable t)
+;; (package! vlf :recipe (:host github :repo "m00natic/vlfi" :files ("*.el"))
+;;  :pin "cc02f2533782d6b9b628cec7e2dcf25b2d05a27c" :disable t)
+;;(package! vlf :recipe (:host github :repo "m00natic/vlfi"))
 (package! exec-path-from-shell)
 (package! org-transclusion)
 (package! org-ref)
+(package! org-auto-tangle)
 (package! ob-http)
 (package! org-graph-view :recipe (:host github :repo "alphapapa/org-graph-view"))
 (package! nov)
 (package! presentation)
-(package! vlf)
 (package! exec-path-from-shell)
 (package! zoom-frm)
 ;;(package! lsp-grammarly)
@@ -49,7 +53,12 @@
 ;;(package! org-attach-screenshot)
 (package! org-download)
 (package! org-special-block-extras)
+
+(package! ox-hugo)
 (package! ox-zola :recipe (:host github :repo "gicrisf/ox-zola"))
+(package! org-appear
+  :recipe (:host github
+           :repo "awth13/org-appear"))
 
 
 ;; To install a package directly from a remote git repo, you must specify a

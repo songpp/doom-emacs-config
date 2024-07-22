@@ -14,7 +14,10 @@
 ;;      Alternatively, press 'gd' (or 'C-c c d') on a module to browse its
 ;;      directory (for easy access to its source code).
 
-(doom! :input
+(doom! :sppowl
+       util
+
+       :input
        chinese
        ;;japanese
        ;;layout            ; auie,ctsrnm is the superior home row
@@ -23,11 +26,12 @@
        (company           ; the ultimate code completion backend
         +auto
         +childframe)
-       (helm
-        +fuzzy
-        +prescient
-        +icons
-        +childframe)             ; the *other* search engine for love and life
+       (vertico +icons)
+       ;;(helm
+       ;; +fuzzy
+       ;; +prescient
+       ;; +icons
+       ;; +childframe)             ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
        ;;(ivy +fuzzy +prescient +childframe +icons)               ; a search engine for love and life
 
@@ -36,7 +40,7 @@
        doom              ; what makes DOOM look the way it does
        doom-dashboard    ; a nifty splash screen for Emacs
        doom-quit         ; DOOM quit-message prompts when you quit Emacs
-       (emoji +unicode)  ; 🙂
+       (emoji +unicode +ascii)  ; 🙂
        ;;fill-column       ; a `fill-column' indicator
        hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
        ;;hydra
@@ -49,7 +53,7 @@
        ophints           ; highlight the region an operation acts on
        (popup +defaults +all)   ; tame sudden yet inevitable temporary windows
        ;;tabs              ; a tab bar for Emacs
-       treemacs          ; a project drawer, like neotree but cooler
+       (treemacs +lsp)          ; a project drawer, like neotree but cooler
        ;;unicode           ; extended unicode support for various languages
        vc-gutter         ; vcs diff in the fringe
        vi-tilde-fringe   ; fringe tildes to mark beyond EOB
@@ -102,8 +106,11 @@
        gist              ; interacting with github gists
        (lookup              ; navigate your code and its documentation
         +devdocs
-        +docsets)
-       lsp
+        +docsets
+        +dictionary
+        +offline)
+       (lsp
+        +peek)
        (magit +forge)             ; a git porcelain for Emacs
        make              ; run make tasks from Emacs
        ;;pass              ; password manager for nerds
@@ -163,7 +170,7 @@
        (org                         ; organize your plain life in plain text
         +pretty                     ; yessss my pretties! (nice unicode symbols)
         +dragndrop                  ; drag & drop files/images into org buffers
-        ;;+hugo                     ; use Emacs for hugo blogging
+        +hugo                     ; use Emacs for hugo blogging
         +noter                      ; enhanced PDF notetaking
         +jupyter                    ; ipython/jupyter support for babel
         +pandoc                     ; export-with-pandoc support
@@ -171,11 +178,12 @@
         ;;+pomodoro                 ; be fruitful with the tomato technique
         +present                    ; using org-mode for presentations
         +roam2
+        +brain
         )                      ; wander around notes
        ;;php               ; perl's insecure younger brother
-       ;;plantuml          ; diagrams for confusing people more
+       plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
-       ;;python            ; beautiful is better than ugly
+       python            ; beautiful is better than ugly
        ;;qt                ; the 'cutest' gui framework ever
        ;;racket            ; a DSL for DSLs
        ;;raku              ; the artist formerly known as perl6
@@ -203,6 +211,7 @@
        ;;irc               ; how neckbeards socialize
        ;;(rss +org)        ; emacs as an RSS reader
        twitter           ; twitter client https://twitter.com/vnought
+
 
        :config
        ;;literate
