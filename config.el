@@ -21,7 +21,7 @@
 ;; See 'C-h v doom-font' for documentation and more examples of what they
 ;; accept. For example:
 ;;
-(setq doom-font (font-spec :family "MonoLisa mac1" :size 13 :weight 'Regular)
+(setq doom-font (font-spec :family "MonoLisa mac1" :size 14 :weight 'Regular)
       doom-variable-pitch-font (font-spec :family "MonoLisa mac1" :size 14))
 ;;
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
@@ -43,7 +43,7 @@
 (setq org-directory "~/org/")
 (setq org-default-notes-file (concat org-directory "/notes.org"))
 (xterm-mouse-mode 1)
-
+(xclip-mode 1)
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
@@ -85,17 +85,6 @@
  (setq gptel-default-mode 'org-mode)
  )
 
-(use-package org-special-block-extras
-  :ensure t
-  :hook 
-    (org-mode . org-special-block-extras-mode)
-
-  ;; All relevant Lisp functions are prefixed ‘o-’; e.g., `o-docs-insert'.
-  :custom
-    (o-docs-libraries
-     '("~/org-special-block-extras/documentation.org")
-     "The places where I keep my '#+documentation'")
-  )
-
-
-;;(load! "modules/keybindings.el")
+(load! "modules/common.el")
+(load! "modules/keybindings.el")
+(load! "modules/macos.el")

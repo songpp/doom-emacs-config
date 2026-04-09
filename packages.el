@@ -56,3 +56,17 @@
 ;;(package! org-latex-impatient :recipe (:host github :repo "yangsheng6810/org-latex-impatient"))
 (package! org-preview-html)
 (package! vlf)
+;;(package! corfu-terminal
+;;   :recipe (:host github :repo "cimisc/emacs-corfu-terminal" :type git))
+;;(package! popon
+;;   :recipe (:host github :repo "cimisc/emacs-popon" :type git))
+
+;; (package! corfu-doc-terminal :recipe (:host nil :type git
+;;    :repo "https://codeberg.org/akib/emacs-corfu-doc-terminal.git"))
+
+(package! monokai-pro-theme)
+(package! ox-hugo)
+(package! xclip)
+(package! protobuf-mode)
+(package! adoc-mode)
+(package! org-auto-tangle)
