@@ -41,3 +41,28 @@
          (org-element-interpret-data el))
         ;; Process other elements normally
         (_ (org-element-interpret-data el))))))
+
+(defun owl/emacsclient-stdin-buffer ()
+  "Convert temporary emacsclient stdin files into ordinary buffers."
+  (when (and buffer-file-name
+             (string-match-p
+              "/__temporary-emacs-read-from-stdin\\.[^/]+\\'"
+              buffer-file-name))
+    (let ((tmp-file buffer-file-name))
+      ;; Detach this buffer from the temporary file.
+      (set-visited-file-name nil t)
+
+      ;; Give it a useful buffer name.
+      (rename-buffer (generate-new-buffer-name "*stdin*"))
+
+      ;; Try magic-mode/shebang/content based mode detection.
+      (normal-mode t)
+
+      ;; Piped input should initially be considered unmodified.
+      (set-buffer-modified-p nil)
+
+      ;; The buffer now owns the contents, so the file is unnecessary.
+      (ignore-errors
+        (delete-file tmp-file)))))
+
+(add-hook 'find-file-hook #'owl/emacsclient-stdin-buffer)
